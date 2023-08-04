@@ -36,6 +36,11 @@ stop:
 	#@if [ $(shell docker ps -aq --filter name=go-admin --filter publish=8000) ]; then docker rm -f go-admin; fi
 	#@echo "go-admin stop success"
 
+dev:
+	go run main.go server -c config/settings.dev.yml
+
+dev-migrate:
+	go run main.go migrate -c config/settings.dev.yml
 
 #.PHONY: test
 #test:
@@ -47,7 +52,6 @@ stop:
 
 # make deploy
 deploy:
-
 	#@git checkout master
 	#@git pull origin master
 	make build-linux
